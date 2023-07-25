@@ -16,8 +16,8 @@ streamlit.dataframe(my_fruit_list)
 # Display fruit name while selecting instead of number
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
-# Let's put a pick list here so they can pick the fruit they want to include , # choosing a few fruits to set as an example
-streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado', 'strawberries'])
+# Let's put a pick list here so they can pick the fruit they want to include # choosing a few fruits to set as an example
+streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), ['Avocado', 'Strawberries'])
 
 
 # Display the table on the page.
