@@ -41,3 +41,5 @@ fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
+
+import snowflake.connector
