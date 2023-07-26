@@ -43,3 +43,11 @@ streamlit.dataframe(fruityvice_normalized)
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
 import snowflake.connector
+
+#Query about Our Snowflake Trial Account Metadata 
+my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetchone()
+streamlit.text("Hello from Snowflake:")
+streamlit.text(my_data_row)
