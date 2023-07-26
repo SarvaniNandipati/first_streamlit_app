@@ -23,13 +23,15 @@ fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 
-
-# Display the table on the page.
-
 #Let's Call the Fruityvice API from Our Streamlit App!
 streamlit.header("Fruityvice Fruit Advice!")
+
+# Giving user an option to select which fruit info he wants and showcasing its nutrition values by hitting a api call
+fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
+streamlit.write('The user entered ', fruit_choice)
+
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit"+ fruit_choice)
 
 # Remove hashtag from this code incase you want to see watermelon data in json format and '#' below code
 # streamlit.text(fruityvice_response.json());
@@ -37,3 +39,5 @@ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon"
 # Show casing watermelon data in Dataframe format
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
+
+# Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
