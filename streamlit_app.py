@@ -64,9 +64,6 @@ if streamlit.button('Get Fruit List'):
  #my_cnx.close()
  streamlit.dataframe(my_data_rows)
 
-# don't run beneath this
-streamlit.stop()
-
 #allowing user to add fruit he likes
 
 def insert_row_snowflake(new_fruit):
@@ -81,3 +78,6 @@ if streamlit.button('Add fruit to the List'):
  back_from_function = insert_row_snowflake(add_my_fruit)
  my_cnx.close()
  streamlit.text(back_from_function)
+
+# don't run beneath this
+streamlit.stop()
