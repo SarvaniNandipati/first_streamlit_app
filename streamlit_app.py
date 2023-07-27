@@ -4,7 +4,7 @@ import pandas
 import requests
 import snowflake.connector
 from urllib.error import URLError
-#import streamlit
+
 streamlit.title('My Parents New Healthy Diner')
  
 streamlit.header('Breakfast Menu')
@@ -15,7 +15,6 @@ streamlit.text(' 🥑🍞 Avocado Toast')
 
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
-#import pandas
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 streamlit.dataframe(my_fruit_list)
 
@@ -33,28 +32,21 @@ streamlit.dataframe(fruits_to_show)
 streamlit.header("Fruityvice Fruit Advice!")
 
 # Giving user an option to select which fruit info he wants and showcasing its nutrition values by hitting a api call
-fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
-streamlit.write('The user entered ', fruit_choice)
-
-#import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
-
-# Remove hashtag from this code incase you want to see watermelon data in json format and '#' below code
-# streamlit.text(fruityvice_response.json());
-
-# Show casing watermelon data in Dataframe format
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
-streamlit.dataframe(fruityvice_normalized)
-
+try:
+  fruit_choice = streamlit.text_input('What fruit would you like information about?')
+  if not fruit_choice:
+    streamlit.error("Please select a fruit to get information.")
+  else:
+   fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+fruit_choice)
+   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+   streamlit.dataframe(fruityvice_normalized)
 
 #don't run anything beneath this before troubleshoot completion
 streamlit.stop()
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
-#import snowflake.connector
-
 #Query about Our Snowflake Trial Account Metadata 
-# changing the query to show Some Data, Instead
+## changing the query to show Some Data, Instead
 #Let's Change the Streamlit Components to Make Things Look a Little Nicer and Get All the Rows, Not Just One
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
