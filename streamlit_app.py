@@ -50,7 +50,7 @@ except URLError as e:
  streamlit.error()
 
 # don't run beneath this
-streamlit.stop()
+#streamlit.stop()
 
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
