@@ -49,15 +49,9 @@ try:
 except URLError as e:
  streamlit.error()
 
-# don't run beneath this
-streamlit.stop()
-
-# Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
-
-## changing the query to show Some Data, Instead!
-
 streamlit.header("View our fruit list- Add your favourites!")
-# snowflake related functions
+
+# snowflake related function
 def get_fruit_load_list():
  with my_cnx.cursor() as my_cur:
   my_cur.execute("SELECT * from fruit_load_list")
@@ -69,6 +63,9 @@ if streamlit.button('Get Fruit List'):
  my_data_rows = get_fruit_load_list()
  #my_cnx.close()
  streamlit.dataframe(my_data_rows)
+
+# don't run beneath this
+streamlit.stop()
 
 #allowing user to add fruit he likes
 
