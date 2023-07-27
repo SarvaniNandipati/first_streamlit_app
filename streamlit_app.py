@@ -41,8 +41,12 @@ try:
    fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
    streamlit.dataframe(fruityvice_normalized)
 
-#don't run anything beneath this before troubleshoot completion
+except URLError as e:
+ streamlit.error()
+
+# don't run beneath this
 streamlit.stop()
+
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
 #Query about Our Snowflake Trial Account Metadata 
