@@ -54,7 +54,7 @@ except URLError as e:
 
 # Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
 
-## changing the query to show Some Data, Instead
+## changing the query to show Some Data, Instead!
 
 streamlit.header("The fruit load list contains")
 # snowflake related functions
